@@ -3,7 +3,7 @@ import CoachPage from "../pages/coach/CoachPage.vue";
 import RequestPage from "../pages/request/RequestPage.vue";
 import RegisterCoach from "../pages/coach/RegisterCoach.vue";
 import CoachInfo from "../pages/coach/CoachInfo.vue";
-import CoachRequest from "../components/CoachRequest.vue";
+import CoachMessage from "../components/CoachMessage.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -18,7 +18,7 @@ const router = createRouter({
         {
           name: "coachMsg",
           path: "message",
-          component: CoachRequest,
+          component: CoachMessage,
           props: true,
         },
       ],

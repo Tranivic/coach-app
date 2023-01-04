@@ -5,7 +5,7 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus veniam sequi amet, laudantium sapiente doloremque velit nesciunt nihil. A enim animi, doloremque similique harum provident rem facilis consectetur unde eveniet.</p>
         <h4>Price: {{this.coach.salary}}/hour</h4>
         <div class="btn-container">
-            <base-button @click="pushMsg">Send a message!</base-button>
+            <base-button v-if="this.$route.name === 'coachInfo'" @click="pushMsg">Send a message!</base-button>
         </div>
     </base-badge>
     <base-badge v-else class="loading-container" base-badge>
@@ -34,6 +34,7 @@ export default {
         }
     },
     created() {
+        //Function to wait App for fetch data from server, and after fetched will dispatch the function to get expecific coach data
         const interval = setInterval(() => {
             this.allCoaches = this.$store.getters['coachesModule/coaches']
             if (this.allCoaches.length) {
@@ -41,6 +42,7 @@ export default {
                 clearInterval(interval);
             }
         }, 100)
+
     },
     computed: {
         coach() {

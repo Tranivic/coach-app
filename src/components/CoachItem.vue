@@ -6,7 +6,7 @@
         <base-speciality v-for="speciality in coach.specialties" :class="speciality">{{ speciality[0].toUpperCase() + speciality.substring(1) }}</base-speciality>
     </div>
     <ul class="coach-btns">
-        <base-button>Contact</base-button>
+        <base-button @click="pushMessage">Contact</base-button>
         <base-button @click="pushInfo">View Details</base-button>
     </ul>
 </li>
@@ -21,6 +21,14 @@ export default {
         pushInfo() {
             this.$router.push({
                 name: 'coachInfo',
+                params: {
+                    coachId: this.coach.name,
+                },
+            })
+        },
+        pushMessage() {
+            this.$router.push({
+                name: 'coachMsg',
                 params: {
                     coachId: this.coach.name,
                 },

@@ -1,7 +1,7 @@
 <template>
-  <h2 class="specialty">
+  <span class="specialty">
     <slot></slot>
-  </h2>
+  </span>
 </template>
 
 <script>
@@ -10,7 +10,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-h2 {
+span {
   font-size: 20px;
 }
 

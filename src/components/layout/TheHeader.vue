@@ -34,6 +34,11 @@ h1 {
 a {
     color: white;
     font-size: 1.5rem;
-    padding: 0 1rem;
+    padding: 1rem;
+    margin: 0 1rem;
+}
+
+.router-link-active{
+    border: white solid 1px;
 }
 </style>

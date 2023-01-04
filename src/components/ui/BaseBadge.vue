@@ -1,7 +1,7 @@
 <template>
-<div class="base-badge">
+<span class="base-badge">
     <slot></slot>
-</div>
+</span>
 </template>
 
 <script>
