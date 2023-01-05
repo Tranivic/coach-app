@@ -5,10 +5,10 @@
     <div class="coach-badges">
         <base-speciality v-for="speciality in coach.specialties" :class="speciality">{{ speciality[0].toUpperCase() + speciality.substring(1) }}</base-speciality>
     </div>
-    <ul class="coach-btns">
-        <base-button @click="pushMessage">Contact</base-button>
-        <base-button @click="pushInfo">View Details</base-button>
-    </ul>
+    <div class="coach-btns">
+        <base-button :link="true" :to="this.toCoachMessage">Contact</base-button>
+        <base-button :link="true" :to="this.toCoachInfo">Details</base-button>
+    </div>
 </li>
 </template>
 
@@ -17,22 +17,22 @@ import BaseButton from "./ui/BaseButton.vue";
 import BaseSpeciality from "./ui/BaseSpecialty.vue";
 export default {
     props: ["coach"],
-    methods: {
-        pushInfo() {
-            this.$router.push({
+    computed: {
+        toCoachInfo() {
+            return {
                 name: 'coachInfo',
                 params: {
                     coachId: this.coach.name,
                 },
-            })
+            }
         },
-        pushMessage() {
-            this.$router.push({
+        toCoachMessage() {
+            return {
                 name: 'coachMsg',
                 params: {
                     coachId: this.coach.name,
                 },
-            })
+            }
         }
     },
     components: {
@@ -69,8 +69,7 @@ li {
     justify-content: flex-end;
     margin-top: 0.5rem;
 }
-
-button {
+a{
     margin: 0 1rem;
 }
 </style>

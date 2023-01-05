@@ -2,9 +2,7 @@
 <base-badge>
     <div class="list-btns">
         <base-button @click="refreshCoaches">Refresh</base-button>
-        <base-button>
-            <router-link :to="{ name: 'register' }">Register as coach</router-link>
-        </base-button>
+        <base-button :link="true" :to="{ name: 'register' }">Register as a Coach</base-button>
     </div>
     <ul class="coaches-list">
         <coach-item v-for="coach in showCoaches" :key="coach" :coach="coach"></coach-item>

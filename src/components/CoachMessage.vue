@@ -119,12 +119,17 @@ textarea {
     resize: vertical;
     min-height: 5rem;
 }
+button{
+    margin: 0 1rem;
+    width: 5rem;
+}
 
 .msg-btns {
     padding-top: 1rem;
     width: 100%;
     display: flex;
     justify-content: center;
+    text-align: center;
 
 }
 
@@ -132,11 +137,5 @@ textarea {
     color: rgb(212, 44, 44);
     background: none;
     border: 1px solid;
-}
-
-button {
-    width: 10%;
-    margin: 0 1rem;
-    align-self: center;
 }
 </style>

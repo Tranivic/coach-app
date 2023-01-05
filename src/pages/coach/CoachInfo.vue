@@ -5,7 +5,7 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus veniam sequi amet, laudantium sapiente doloremque velit nesciunt nihil. A enim animi, doloremque similique harum provident rem facilis consectetur unde eveniet.</p>
         <h4>Price: {{this.coach.salary}}/hour</h4>
         <div class="btn-container">
-            <base-button v-if="this.$route.name === 'coachInfo'" @click="pushMsg">Send a message!</base-button>
+            <base-button :disable="this.isDisable" :link="true" :to="{name: 'coachMsg'}">Send a message!</base-button>
         </div>
     </base-badge>
     <base-badge v-else class="loading-container" base-badge>
@@ -21,13 +21,6 @@ import BaseButton from '../../components/ui/BaseButton.vue'
 
 export default {
     props: ['coachId'],
-    methods: {
-        pushMsg() {
-            this.$router.push({
-                name: 'coachMsg',
-            })
-        }
-    },
     data() {
         return {
             allCoaches: null,
@@ -42,12 +35,19 @@ export default {
                 clearInterval(interval);
             }
         }, 100)
-
     },
     computed: {
         coach() {
             return this.$store.getters['coachesModule/identifiedCoach']
         },
+        isDisable(){
+            console.log(this.$route.name)
+            if(this.$route.name === 'coachMsg'){
+                return true
+            } else {
+                return false
+            }
+        }
     },
     components: {
         BaseBadge,
