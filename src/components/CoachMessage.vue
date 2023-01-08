@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <base-badge>
     <form @submit.prevent="submit">
         <label for="full-name">Your name:</label>

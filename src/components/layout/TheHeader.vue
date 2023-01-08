@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <header>
     <div class="logo">
         <h1>Find a coach</h1>

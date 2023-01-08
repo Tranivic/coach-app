@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <li>
     <base-badge class="card-badge">
         <div class="card-top">

@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="info-container">
     <base-badge v-if="this.coach">
         <h1>{{this.coach.name}}</h1>

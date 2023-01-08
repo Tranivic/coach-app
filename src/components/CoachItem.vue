@@ -1,9 +1,9 @@
-<template lang="">
+<template>
 <li>
     <h1 class="coach-capitalizedString">{{ coach.name }}</h1>
     <h4 class="coach-salary">${{ coach.salary }}/hour</h4>
     <div class="coach-badges">
-        <base-speciality v-for="speciality in coach.specialties" :class="speciality">{{ speciality[0].toUpperCase() + speciality.substring(1) }}</base-speciality>
+        <base-speciality v-for="speciality in coach.specialties" :key="speciality" :class="speciality">{{ speciality[0].toUpperCase() + speciality.substring(1) }}</base-speciality>
     </div>
     <div class="coach-btns">
         <base-button :link="true" :to="this.toCoachMessage">Contact</base-button>
