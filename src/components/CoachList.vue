@@ -12,8 +12,6 @@
 
 <script>
 import CoachItem from "./CoachItem.vue";
-import BaseBadge from "./ui/BaseBadge.vue";
-import BaseButton from "./ui/BaseButton.vue";
 
 export default {
     methods: {
@@ -27,8 +25,6 @@ export default {
         },
     },
     components: {
-        BaseBadge,
-        BaseButton,
         CoachItem,
     },
 };

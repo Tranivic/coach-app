@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import BaseButton from "./ui/BaseButton.vue";
-import BaseSpeciality from "./ui/BaseSpecialty.vue";
 export default {
     props: ["coach"],
     computed: {
@@ -34,10 +32,6 @@ export default {
                 },
             }
         }
-    },
-    components: {
-        BaseButton,
-        BaseSpeciality,
     },
 };
 </script>

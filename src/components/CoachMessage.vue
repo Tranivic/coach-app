@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import BaseBadge from "./ui/BaseBadge.vue";
-import BaseButton from "./ui/BaseButton.vue";
+// Moment js used for data formatting
 import moment from "moment";
+
 export default {
     props: ["coachId"],
     data() {
@@ -35,10 +35,6 @@ export default {
             message: "",
             msgType: "",
         };
-    },
-    components: {
-        BaseBadge,
-        BaseButton,
     },
     methods: {
         submit() {
