@@ -5,7 +5,7 @@
         <base-button :link="true" :to="{ name: 'register' }">Register as a Coach</base-button>
     </div>
     <ul class="coaches-list">
-        <coach-item v-for="coach in showCoaches" :key="coach" :coach="coach"></coach-item>
+        <coach-item v-for="coach in showCoaches" :key="coach.id" :coach="coach"></coach-item>
     </ul>
 </base-badge>
 </template>

@@ -27,19 +27,29 @@ export default {
   },
   mutations: {
     setCoaches(state, payLoad) {
-      state.coaches = Object.values(payLoad);
+      const fetchedCoaches = payLoad;
+      for (let coach in fetchedCoaches) {
+        state.coaches.push({
+          id: coach,
+          firstName: fetchedCoaches[coach].firstName,
+          lastName: fetchedCoaches[coach].lastName,
+          description: fetchedCoaches[coach].description,
+          hourlyRate: fetchedCoaches[coach].hourlyRate,
+          specialties: fetchedCoaches[coach].areas,
+        });
+      }
     },
     setFilterValues(state, payLoad) {
       state.filterGroup = payLoad;
     },
     setDisplayedCoaches(state) {
-      const expecificFilters = state.filterGroup;
+      const selectedFilters = state.filterGroup;
       state.displayedCoaches = [];
-      if (expecificFilters.length) {
+      if (selectedFilters.length) {
         state.coaches.forEach((element) => {
           element.specialties.forEach((speciality) => {
             if (
-              expecificFilters.includes(speciality) &&
+              selectedFilters.includes(speciality) &&
               !state.displayedCoaches.includes(element)
             ) {
               state.displayedCoaches.push(element);
@@ -55,7 +65,28 @@ export default {
     },
   },
   actions: {
-    refreshPage({ dispatch }) {
+    registerCoach({ commit }, payLoad) {
+      const coachData = payLoad.coachData;
+      const userId = payLoad.userId;
+      axios
+        .put(
+          `https://vue-findacoach-app-default-rtdb.firebaseio.com/coaches/${userId}.json`,
+          {
+            ...coachData,
+          }
+        )
+        .then((response) => {
+          //Todo
+          console.log(response);
+        })
+        .catch((error) => {
+          //Todo
+          console.log(error);
+        });
+    },
+    refreshPage({ dispatch, state }) {
+      state.displayedCoaches = [];
+      state.coaches = [];
       dispatch("getCoaches");
     },
     getCoaches({ commit }) {
@@ -67,7 +98,6 @@ export default {
           const fetchedData = response.data;
           commit("setCoaches", fetchedData);
           commit("setDisplayedCoaches");
-          console.log(response)
         })
         .catch((error) => {
           console.log(error);

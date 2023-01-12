@@ -41,10 +41,6 @@ a {
 
 a{color: inherit;}
 
-button,a:hover {
-    background: rgb(224, 224, 224);
-    transform: scale(1.1);
-}
 .disabled {
   /* button deactivated */
   opacity: 0.6;

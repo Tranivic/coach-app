@@ -40,12 +40,12 @@ export default {
         submit() {
             //Dispatch to post request data into firebase
             this.$store.dispatch("requests/postRequest", {
-                    id: this.randomId,
                     fullName: this.fullName,
                     messageType: this.msgType,
                     message: this.message,
                     msgFor: this.$route.params.coachId,
                     sendDate: this.formatedDate,
+                    id: this.generateRandomId,
                 }),
                 this.cleanForm();
         },
@@ -56,7 +56,6 @@ export default {
             if (/^[A-Za-z]+$/.test(char)) return true;
             else e.preventDefault();
         },
-
         //This will clean the form inputs after submit
         cleanForm() {
             this.firstName = "";
@@ -67,21 +66,24 @@ export default {
         //Function to push user to coach info if hit the cancel btn
         cancelForm() {
             this.$router.push({
-                name: 'coachInfo'
-            })
-        }
+                name: "coachInfo",
+            });
+        },
     },
     computed: {
+        // Computed to return full name
         fullName() {
             return this.firstName + " " + this.lastName;
         },
-        randomId() {
-            return `${moment().format("DDMMYY")}RQST${moment().format("Hmmss")}`;
-        },
+        // Function to format the date and store
         formatedDate() {
             return `${moment().format("MMM")} ${moment().format(
         "DDD"
       )} at ${moment().format("HH:MM A")} `;
+        },
+        //Function to get random id for the request
+        generateRandomId() {
+            return this.$store.getters["randomId"];
         },
     },
 };
@@ -115,7 +117,8 @@ textarea {
     resize: vertical;
     min-height: 5rem;
 }
-button{
+
+button {
     margin: 0 1rem;
     width: 5rem;
 }
@@ -126,7 +129,6 @@ button{
     display: flex;
     justify-content: center;
     text-align: center;
-
 }
 
 .cancel-btn {

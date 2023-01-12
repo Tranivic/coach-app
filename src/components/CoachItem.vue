@@ -1,7 +1,7 @@
 <template>
 <li>
-    <h1 class="coach-capitalizedString">{{ coach.name }}</h1>
-    <h4 class="coach-salary">${{ coach.salary }}/hour</h4>
+    <h1 class="coach-capitalizedString">{{ fullName }}</h1>
+    <h4 class="coach-salary">${{ coach.hourlyRate }}/hour</h4>
     <div class="coach-badges">
         <base-speciality v-for="speciality in coach.specialties" :key="speciality" :class="speciality">{{ speciality[0].toUpperCase() + speciality.substring(1) }}</base-speciality>
     </div>
@@ -16,11 +16,14 @@
 export default {
     props: ["coach"],
     computed: {
+        fullName() {
+            return this.coach.firstName + " " + this.coach.lastName;
+        },
         toCoachInfo() {
             return {
                 name: 'coachInfo',
                 params: {
-                    coachId: this.coach.name,
+                    coachId: this.coach.id,
                 },
             }
         },
@@ -28,7 +31,7 @@ export default {
             return {
                 name: 'coachMsg',
                 params: {
-                    coachId: this.coach.name,
+                    coachId: this.coach.id,
                 },
             }
         }
