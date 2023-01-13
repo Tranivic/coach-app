@@ -4,7 +4,7 @@
         <base-button @click="refreshCoaches">Refresh</base-button>
         <base-button :link="true" :to="{ name: 'register' }">Register as a Coach</base-button>
     </div>
-    <ul class="coaches-list">
+    <ul v-if="showCoaches" class="coaches-list">
         <coach-item v-for="coach in showCoaches" :key="coach.id" :coach="coach"></coach-item>
     </ul>
 </base-badge>

@@ -133,7 +133,7 @@ export default {
     },
     computed: {
         getUniqueId() {
-            return this.$store.getters['randomId'];
+            return this.$store.getters['uniqueCoachId'];
         }
     },
 }

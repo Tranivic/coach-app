@@ -11,8 +11,11 @@ export default createStore({
   state: {},
   getters: {
     // Function to return a unique id when requested.
-    randomId() {
-      return `${moment().format("DDMMYY")}RQST${moment().format("Hmmss")}`;
+    uniqueCoachId() {
+      return `${moment().format("DDMMYY")}C${moment().format("Hmmss")}`;
+    },
+    uniqueRequestId() {
+      return `${moment().format("DDMMYY")}R${moment().format("Hmmss")}`;
     },
   },
   mutations: {},

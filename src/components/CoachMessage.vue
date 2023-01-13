@@ -12,7 +12,7 @@
             <option>Proposal</option>
             <option>Question</option>
         </select>
-        <label for="textarea">Message to: {{ coachId }}</label>
+        <label for="textarea">Message to: {{ this.coachFetchedName }}</label>
         <textarea required v-model="message" name="textarea" id="" cols="30" rows="10"></textarea>
         <div class="msg-btns">
             <base-button class="send-btn">Send</base-button>
@@ -28,26 +28,41 @@ import moment from "moment";
 
 export default {
     props: ["coachId"],
+    created() {
+        this.getCoachName().then((coachName) => {
+            this.coachFetchedName = coachName;
+        });
+    },
     data() {
         return {
             firstName: "",
             lastName: "",
             message: "",
             msgType: "",
+
+            coachFetchedName: "",
         };
     },
     methods: {
-        submit() {
+        async getCoachName() {
+            const coach = this.$store.getters["coachesModule/identifiedCoach"];
+            const coachName = coach.firstName + " " + coach.lastName;
+            return coachName;
+        },
+        async submit() {
             //Dispatch to post request data into firebase
-            this.$store.dispatch("requests/postRequest", {
-                    fullName: this.fullName,
-                    messageType: this.msgType,
-                    message: this.message,
-                    msgFor: this.$route.params.coachId,
-                    sendDate: this.formatedDate,
-                    id: this.generateRandomId,
-                }),
-                this.cleanForm();
+            const newData = {
+                fullName: this.fullName,
+                messageType: this.msgType,
+                message: this.message,
+                msgFor: this.$route.params.coachId,
+                sendDate: this.formatedDate,
+                messageId: this.generateRandomId,
+            };
+            await this.$store.dispatch("requests/postRequest", newData);
+            this.$router.push({
+                path: "/coaches",
+            });
         },
 
         //Function to allow only letters in name input
@@ -55,13 +70,6 @@ export default {
             let char = String.fromCharCode(e.keyCode);
             if (/^[A-Za-z]+$/.test(char)) return true;
             else e.preventDefault();
-        },
-        //This will clean the form inputs after submit
-        cleanForm() {
-            this.firstName = "";
-            this.lastName = "";
-            this.message = "";
-            this.msgType = "";
         },
         //Function to push user to coach info if hit the cancel btn
         cancelForm() {
@@ -71,11 +79,11 @@ export default {
         },
     },
     computed: {
-        // Computed to return full name
+        // Computed to return sender full name
         fullName() {
             return this.firstName + " " + this.lastName;
         },
-        // Function to format the date and store
+        // Function to format the date and store in the request
         formatedDate() {
             return `${moment().format("MMM")} ${moment().format(
         "DDD"
@@ -83,7 +91,7 @@ export default {
         },
         //Function to get random id for the request
         generateRandomId() {
-            return this.$store.getters["randomId"];
+            return this.$store.getters["uniqueRequestId"];
         },
     },
 };

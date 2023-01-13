@@ -4,7 +4,7 @@
         <div class="card-top">
             <div class="superior">
                 <img src="../assets/no-picture.png" alt="Profile img">
-                <h4>{{request.fullName}}</h4>
+                <h4>{{request.senderName}}</h4>
                 <h4 class="date">{{request.sendDate}}</h4>
             </div>
             <div class="inferior">

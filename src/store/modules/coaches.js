@@ -109,7 +109,7 @@ export default {
     },
     identifyCoach({ commit, state }, payLoad) {
       const identifiedCoach = state.displayedCoaches.find(
-        (coach) => coach.name == payLoad
+        (coach) => coach.id == payLoad
       );
       commit("setIdentifiedCoach", identifiedCoach);
     },

@@ -18,19 +18,17 @@ export default {
   },
   actions: {
     postRequest({}, payLoad) {
+      const newRequest = {
+        senderName: payLoad.fullName,
+        msgType: payLoad.messageType,
+        message: payLoad.message,
+        sendDate: payLoad.sendDate,
+      }
       axios
-        .post(
-          "https://vue-findacoach-app-default-rtdb.firebaseio.com/requests.json",
-          payLoad
+        .put(
+          `https://vue-findacoach-app-default-rtdb.firebaseio.com/requests/${payLoad.msgFor}/${payLoad.messageId}.json`,
+          newRequest
         )
-        .then((response) => {
-          //Todo
-          console.log(response);
-        })
-        .catch((error) => {
-          //Todo
-          console.log(error);
-        });
     },
     fetchRequests({ commit }) {
       axios
