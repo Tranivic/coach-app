@@ -23,10 +23,12 @@ export default {
         msgType: payLoad.messageType,
         message: payLoad.message,
         sendDate: payLoad.sendDate,
+        msgForId: payLoad.msgForId,
+        msgForName: payLoad.msgForName,
       }
       axios
         .put(
-          `https://vue-findacoach-app-default-rtdb.firebaseio.com/requests/${payLoad.msgFor}/${payLoad.messageId}.json`,
+          `https://vue-findacoach-app-default-rtdb.firebaseio.com/requests/${payLoad.messageId}.json`,
           newRequest
         )
     },

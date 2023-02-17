@@ -8,7 +8,7 @@
                 <h4 class="date">{{request.sendDate}}</h4>
             </div>
             <div class="inferior">
-                <h5>{{request.messageType}} to: <mark>@{{request.msgFor}}</mark></h5>
+                <h5>{{request.messageType}} to: <mark>@{{request.msgForName}}</mark></h5>
             </div>
         </div>
         <div class="card-bottom">

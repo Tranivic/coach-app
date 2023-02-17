@@ -55,9 +55,10 @@ export default {
                 fullName: this.fullName,
                 messageType: this.msgType,
                 message: this.message,
-                msgFor: this.$route.params.coachId,
+                msgForId: this.$route.params.coachId,
                 sendDate: this.formatedDate,
                 messageId: this.generateRandomId,
+                msgForName: this.coachFetchedName,
             };
             await this.$store.dispatch("requests/postRequest", newData);
             this.$router.push({
